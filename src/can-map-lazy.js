@@ -1,6 +1,6 @@
 var can = require('can/util/util');
 var bubble = require('./bubble');
-var mapHelpers = require('../map_helpers');
+var mapHelpers = require('can/map/map_helpers');
 require('can/map/map');
 require('can/list/list');
 require('./nested_reference');

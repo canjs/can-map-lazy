@@ -1,4 +1,5 @@
 require('steal-qunit');
+require('../can-map-lazy');
 
 QUnit.module('can/list/lazy');
 test('list attr changes length', function () {

@@ -1,5 +1,5 @@
 /* jshint asi:true*/
-require('can/map/lazy/lazy');
+require('../can-map-lazy');
 require('can/compute/compute');
 require('steal-qunit');
 
