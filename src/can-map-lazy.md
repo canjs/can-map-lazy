@@ -1,9 +1,6 @@
-@constructor can.LazyMap
+@constructor can.LazyMap Guide
 @inherits can.Map
-@parent can.Map.plugins
-@plugin can/map/lazy
-@release 2.1
-@test can/LazyMap/lazy/test.html
+@parent can-map-lazy
 
 @description Create observable objects that initialize on demand.
 
@@ -45,4 +42,4 @@ lazyPerson.attr('chores') // Now chores is a can.List
 
 ## See Also
 
-For information on manipulating attributes, see [can.Map.prototype.attr attr]. To see what events are fired on property changes and how to listen for those events see [can.Map.prototype.bind bind].
+For information on manipulating attributes, see [can.Map.prototype.attr](https://canjs.com/docs/can.Map.prototype.attr.html). To see what events are fired on property changes and how to listen for those events see [can.Map.prototype.bind](https://canjs.com/docs/can.Map.prototype.bind.html).

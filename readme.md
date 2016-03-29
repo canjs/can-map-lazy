@@ -1,3 +1,5 @@
+@page can-map-lazy
+
 # can-map-lazy
 
 [![Build Status](https://travis-ci.org/canjs/can-map-lazy.png?branch=master)](https://travis-ci.org/canjs/can-map-lazy)
