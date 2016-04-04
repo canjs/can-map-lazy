@@ -1,6 +1,6 @@
-@page can-map-lazy
+# can-map-lazy (DEPRECATED)
 
-## can-map-lazy
+**The `can-map-lazy` plugin has been deprecated**
 
 [![Build Status](https://travis-ci.org/canjs/can-map-lazy.png?branch=master)](https://travis-ci.org/canjs/can-map-lazy)
 
