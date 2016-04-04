@@ -1,6 +1,6 @@
 {
   "name": "can-map-lazy",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Lazy initializing maps and lists",
   "homepage": "https://canjs.com",
   "author": {
