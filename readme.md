@@ -1,5 +1,7 @@
 # can-map-lazy (DEPRECATED)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/canjs/can-map-lazy.svg)](https://greenkeeper.io/)
+
 **The `can-map-lazy` plugin has been deprecated**
 
 [![Build Status](https://travis-ci.org/canjs/can-map-lazy.png?branch=master)](https://travis-ci.org/canjs/can-map-lazy)
