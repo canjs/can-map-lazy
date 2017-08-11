@@ -1,108 +1,28 @@
-# can-map-lazy (DEPRECATED)
+# can-map-lazy
 
-**The `can-map-lazy` plugin has been deprecated**
+[![Join the chat at https://gitter.im/canjs/canjs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/canjs/canjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/canjs/can-map-lazy/blob/master/LICENSE.md)
+[![npm version](https://badge.fury.io/js/can-map-lazy.svg)](https://www.npmjs.com/package/can-map-lazy)
+[![Travis build status](https://travis-ci.org/canjs/can-map-lazy.svg?branch=master)](https://travis-ci.org/canjs/can-map-lazy)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/canjs/can-map-lazy?branch=master&svg=true)](https://ci.appveyor.com/project/matthewp/can-map-lazy)
+[![Coverage status](https://coveralls.io/repos/github/canjs/can-map-lazy/badge.svg?branch=master)](https://coveralls.io/github/canjs/can-map-lazy?branch=master)
+[![Greenkeeper badge](https://badges.greenkeeper.io/canjs/can-map-lazy.svg)](https://greenkeeper.io/)
 
-[![Build Status](https://travis-ci.org/canjs/can-map-lazy.png?branch=master)](https://travis-ci.org/canjs/can-map-lazy)
+FAILED TO GET DESCRIPTION
 
-`can-map-lazy` is a plugin that enables lazy initializing for maps and lists.
+## Documentation
 
-## Overview
+Read the [API docs on CanJS.com](https://canjs.com/doc/can-map-lazy.html).
 
-Just like `can.Map`, `can.LazyMap` provides a way to listen for and keep track of changes to objects. But unlike Map, a LazyMap only initializes data when bound, set or read. For lazy observable arrays, `can.LazyList` is also available.
+## Changelog
 
-### Limitations of LazyMaps
-
-Although passing all original [can.Map] and [can.List] tests, `can.LazyMap` and `can.LazyList` do not work with the [can.Map.attributes], [can.Map.setter], [can.Map.delegate], [can.Map.backup]
-and [can.Map.validations] plugins.
-
-Additionally, If all properties of a LazyMap or LazyList are being read, bound or set, initialization time can be slightly higher than using a Map or List.
-
-### Working with LazyMaps
-
-`can.LazyMap` and `can.LazyList` are API compatible with [can.Map] and [can.List]. 
-
-To create a LazyMap, use `new can.LazyMap([props])`. Properties should be read or set using `[can.Map.prototype.attr attr]`, never directly.
-
-```
-// chores is just a normal Array initially
-var lazyPerson = new can.LazyMap({
-  name: 'Bob',
-  chores: ['dishes', 'garbage']
-});
-
-lazyPerson.attr('chores') // Now chores is a can.List
-```
-
-### See Also
-
-For information on manipulating attributes, see [can.Map.prototype.attr](https://canjs.com/docs/can.Map.prototype.attr.html). To see what events are fired on property changes and how to listen for those events see [can.Map.prototype.bind](https://canjs.com/docs/can.Map.prototype.bind.html).
-
-
-## Usage
-
-### ES6 use
-
-With StealJS, you can import this module directly in a template that is autorendered:
-
-```js
-import plugin from 'can-map-lazy';
-```
-
-### CommonJS use
-
-Use `require` to load `can-map-lazy` and everything else
-needed to create a template that uses `can-map-lazy`:
-
-```js
-var plugin = require("can-map-lazy");
-```
-
-### AMD use
-
-Configure the `can` and `jquery` paths and the `can-map-lazy` package:
-
-```html
-<script src="require.js"></script>
-<script>
-	require.config({
-	    paths: {
-	        "jquery": "node_modules/jquery/dist/jquery",
-	        "can": "node_modules/canjs/dist/amd/can"
-	    },
-	    packages: [{
-		    	name: 'can-map-lazy',
-		    	location: 'node_modules/can-map-lazy/dist/amd',
-		    	main: 'lib/can-map-lazy'
-	    }]
-	});
-	require(["main-amd"], function(){});
-</script>
-```
-
-### Standalone use
-
-Load the `global` version of the plugin:
-
-```html
-<script src='./node_modules/can-map-lazy/dist/global/can-map-lazy.js'></script>
-```
+See the [latest releases on GitHub](https://github.com/canjs/can-map-lazy/releases).
 
 ## Contributing
 
-### Making a Build
+The [contribution guide](https://github.com/canjs/can-map-lazy/blob/master/CONTRIBUTING.md) has information on getting help, reporting bugs, developing locally, and more.
 
-To make a build of the distributables into `dist/` in the cloned repository run
+## License
 
-```
-npm install
-node build
-```
+[MIT](https://github.com/canjs/can-map-lazy/blob/master/LICENSE.md)
 
-### Running the tests
-
-Tests can run in the browser by opening a webserver and visiting the `test.html` page.
-Automated tests that run the tests from the command line in Firefox can be run with
-
-```
-npm test
-```
