@@ -5,7 +5,7 @@ require('steal-qunit');
 
 QUnit.module('can/map/lazy')
 
-test("Basic Map", 4, function () {
+QUnit.test("Basic Map", 4, function(assert) {
 
 	var state = new can.LazyMap({
 		category: 5,
@@ -13,10 +13,10 @@ test("Basic Map", 4, function () {
 	});
 
 	state.bind("change", function (ev, attr, how, val, old) {
-		equal(attr, "category", "correct change name")
-		equal(how, "set")
-		equal(val, 6, "correct")
-		equal(old, 5, "correct")
+		assert.equal(attr, "category", "correct change name")
+		assert.equal(how, "set")
+		assert.equal(val, 6, "correct")
+		assert.equal(old, 5, "correct")
 	});
 
 	state.attr("category", 6);
@@ -25,7 +25,7 @@ test("Basic Map", 4, function () {
 
 });
 
-test("Nested Map", 5, function () {
+QUnit.test("Nested Map", 5, function(assert) {
 	var me = new can.LazyMap({
 		name: {
 			first: "Justin",
@@ -33,13 +33,13 @@ test("Nested Map", 5, function () {
 		}
 	});
 
-	ok(me.attr("name") instanceof can.LazyMap);
+	assert.ok(me.attr("name") instanceof can.LazyMap);
 
 	me.bind("change", function (ev, attr, how, val, old) {
-		equal(attr, "name.first", "correct change name")
-		equal(how, "set")
-		equal(val, "Brian", "correct")
-		equal(old, "Justin", "correct")
+		assert.equal(attr, "name.first", "correct change name")
+		assert.equal(how, "set")
+		assert.equal(val, "Brian", "correct")
+		assert.equal(old, "Justin", "correct")
 	})
 
 	me.attr("name.first", "Brian");
@@ -48,16 +48,16 @@ test("Nested Map", 5, function () {
 
 })
 
-test("remove attr", function () {
+QUnit.test("remove attr", function(assert) {
 	var state = new can.LazyMap({
 		category: 5,
 		productType: 4
 	});
 	state.removeAttr("category");
-	deepEqual(can.LazyMap.keys(state), ["productType"], "one property");
+	assert.deepEqual(can.LazyMap.keys(state), ["productType"], "one property");
 });
 
-test("nested event handlers are not run by changing the parent property (#280)", function () {
+QUnit.test("nested event handlers are not run by changing the parent property (#280)", function(assert) {
 
 	var person = new can.LazyMap({
 		name: {
@@ -65,11 +65,11 @@ test("nested event handlers are not run by changing the parent property (#280)",
 		}
 	})
 	person.bind("name.first", function (ev, newName) {
-		ok(false, "name.first should never be called")
+		assert.ok(false, "name.first should never be called")
 		//equal(newName, "hank", "name.first handler called back with correct new name")
 	});
 	person.bind("name", function () {
-		ok(true, "name event triggered")
+		assert.ok(true, "name event triggered")
 	})
 
 	person.attr("name", {
@@ -78,7 +78,7 @@ test("nested event handlers are not run by changing the parent property (#280)",
 
 });
 
-test("cyclical objects (#521)", 0, function () {
+QUnit.test("cyclical objects (#521)", 0, function(assert) {
 	// Not supported by LazyMap
 	/*
 	var foo = {};
@@ -103,41 +103,41 @@ test("cyclical objects (#521)", 0, function () {
 	*/
 })
 
-test('Getting attribute that is a can.compute should return the compute and not the value of the compute (#530)', function () {
+QUnit.test('Getting attribute that is a can.compute should return the compute and not the value of the compute (#530)', function(assert) {
 	var compute = can.compute('before');
 	var map = new can.LazyMap({
 		time: compute
 	});
 
-	equal(map.time, compute, 'dot notation call of time is compute');
-	equal(map.attr('time'), compute, '.attr() call of time is compute');
+	assert.equal(map.time, compute, 'dot notation call of time is compute');
+	assert.equal(map.attr('time'), compute, '.attr() call of time is compute');
 })
 
-test('_cid add to original object', function () {
+QUnit.test('_cid add to original object', function(assert) {
 	var map = new can.LazyMap(),
 		obj = {
 			'name': 'thecountofzero'
 		};
 
 	map.attr('myObj', obj);
-	ok(!obj._cid, '_cid not added to original object');
+	assert.ok(!obj._cid, '_cid not added to original object');
 })
 
-test("can.each used with maps", function () {
+QUnit.test("can.each used with maps", function(assert) {
 	can.each(new can.LazyMap({
 		foo: "bar"
 	}), function (val, attr) {
 
 		if (attr === "foo") {
-			equal(val, "bar")
+			assert.equal(val, "bar")
 		} else {
-			ok(false, "no properties other should be called " + attr)
+			assert.ok(false, "no properties other should be called " + attr)
 		}
 
 	})
 })
 
-test("can.Map serialize triggers reading (#626)", function () {
+QUnit.test("can.Map serialize triggers reading (#626)", function(assert) {
 	var old = can.__observe;
 
 	var attributesRead = [];
@@ -161,14 +161,14 @@ test("can.Map serialize triggers reading (#626)", function () {
 	testMap.serialize();
 
 
-	ok( can.inArray("cats", attributesRead ) !== -1 && can.inArray( "dogs", attributesRead ) !== -1,  "map serialization triggered __reading on all attributes");
+	assert.ok( can.inArray("cats", attributesRead ) !== -1 && can.inArray( "dogs", attributesRead ) !== -1,  "map serialization triggered __reading on all attributes");
 
-	ok(readingTriggeredForKeys, "map serialization triggered __reading for __keys");
+	assert.ok(readingTriggeredForKeys, "map serialization triggered __reading for __keys");
 
 	can.__observe = old;
 });
 
-test("Test top level attributes", 7, function () {
+QUnit.test("Test top level attributes", 7, function(assert) {
 	var test = new can.LazyMap({
 		'my.enable': false,
 		'my.item': true,
@@ -182,12 +182,12 @@ test("Test top level attributes", 7, function () {
 		}
 	});
 
-	equal(test.attr('my.value'), true, 'correct');
-	equal(test.attr('my.nested.value'), 100, 'correct');
-	ok(test.attr("my.nested") instanceof can.LazyMap);
+	assert.equal(test.attr('my.value'), true, 'correct');
+	assert.equal(test.attr('my.nested.value'), 100, 'correct');
+	assert.ok(test.attr("my.nested") instanceof can.LazyMap);
 
-	equal(test.attr('my.enable'), false, 'falsey (false) value accessed correctly');
-	equal(test.attr('my.item'), true, 'truthey (true) value accessed correctly');
-	equal(test.attr('my.count'), 0, 'falsey (0) value accessed correctly');
-	equal(test.attr('my.newCount'), 1, 'falsey (1) value accessed correctly');
+	assert.equal(test.attr('my.enable'), false, 'falsey (false) value accessed correctly');
+	assert.equal(test.attr('my.item'), true, 'truthey (true) value accessed correctly');
+	assert.equal(test.attr('my.count'), 0, 'falsey (0) value accessed correctly');
+	assert.equal(test.attr('my.newCount'), 1, 'falsey (1) value accessed correctly');
 });
